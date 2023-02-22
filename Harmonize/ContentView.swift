@@ -17,8 +17,20 @@ struct TunerData {
     var amplitude: Float = 0.0
     var noteNameWithSharps = "-"
     var noteNameWithFlats = "-"
-    var closeness: Float = 1.0
+    var closeness: Float = 0.0
     var targetPitch: Float = 0.0
+}
+
+class PreviewTunerConductor: ObservableObject {
+    @Published var data = TunerData()
+    init() {
+        data.noteNameWithSharps = "A4"
+        data.noteNameWithFlats = "A4"
+        data.pitch = 440.0
+        data.amplitude = 0.9
+        data.closeness = 1.0
+        data.targetPitch = 440.0
+    }
 }
 
 class TunerConductor: ObservableObject, HasAudioEngine {
@@ -44,12 +56,12 @@ class TunerConductor: ObservableObject, HasAudioEngine {
     init() {
         guard let input = engine.input else {
             UIApplication.shared.alert(body: "Could not find Input!")
-            preconditionFailure("Could not find Input!")
+            fatalError("engine.input not found! Are you running in the sim?")
         }
 
         guard let device = engine.inputDevice else {
             UIApplication.shared.alert(body: "Could not find Input Device!")
-            preconditionFailure("Could not find Input Device!")
+            fatalError("engine.inputDevice not found! Are you running in the sim?")
         }
 
         initialDevice = device
@@ -105,10 +117,28 @@ class TunerConductor: ObservableObject, HasAudioEngine {
 }
 
 struct ContentView: View {
-    @StateObject var conductor = TunerConductor()
+    #if targetEnvironment(simulator)
+        @StateObject var conductor = PreviewTunerConductor()
+    #else
+        @StateObject var conductor = TunerConductor()
+    #endif
+    @State var A442 = false
+    @State public var previewMode = false
+    let appVersion = ((Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String ?? "Unknown") + " (" + (Bundle.main.infoDictionary?["CFBundleVersion"] as? String ?? "Unknown") + ")")
     var body: some View {
         NavigationView {
             List {
+                #if targetEnvironment(simulator)
+                Section {
+                    HStack {
+                        Spacer()
+                        Text("! Preview Mode !")
+                            .foregroundColor(Color(UIColor.red))
+                            .font(.system(size: 21, weight: .semibold, design: .monospaced))
+                        Spacer()
+                    }
+                }
+                #endif
                 Section {
                     Text("\(conductor.data.noteNameWithSharps) / \(conductor.data.noteNameWithFlats)")
                 } header: {
@@ -119,8 +149,24 @@ struct ContentView: View {
                 } header: {
                     Label("Frequency", systemImage: "waveform")
                 }
+                
                 Section {
+                    #if targetEnvironment(simulator)
+                    Text("InputDevicePicker not shown - in preview mode")
+                    #else
+                    NodeOutputView(conductor.tappableNodeA).clipped()
+                    #endif
+                    
+                } header: {
+                    Label("Graph", systemImage: "waveform.path")
+                }
+                
+                Section {
+                    #if targetEnvironment(simulator)
+                    Text("InputDevicePicker not shown - in preview mode")
+                    #else
                     InputDevicePicker(device: conductor.initialDevice)
+                    #endif
                 } header: {
                     Label("Options", systemImage: "wrench.and.screwdriver")
                 }
@@ -131,51 +177,61 @@ struct ContentView: View {
                     Label("Debug - Here be Dragons!", systemImage: "ladybug")
                     
                 }
-                Section {
-                    NodeOutputView(conductor.tappableNodeA).clipped()
-                } header: {
-                    Label("Graph", systemImage: "waveform.path")
-                }
             }
+            #if targetEnvironment(simulator)
+            .onAppear{
+                    UIApplication.shared.alert(title: "Warning" ,body: "iPhone Simulator and/or Xcode Preview detected! Some features may be limited.")
+                previewMode = true
+            }
+            #else
             .onAppear {
                 conductor.start()
             }
             .onDisappear {
                 conductor.stop()
             }
+            #endif
             .navigationTitle("Harmonize")
-        }
-    }
-}
-
-struct ContentView_Previews: PreviewProvider {
-    static var previews: some View {
-        ContentView()
-    }
-}
-
-struct InputDevicePicker: View {
-    @State var device: Device
-
-    var body: some View {
-        Picker("Input: \(device.deviceID)", selection: $device) {
-            ForEach(getDevices(), id: \.self) {
-                Text($0.deviceID)
+            .toolbar {
+                Button(
+                    action: {
+                        UIApplication.shared.alert(title: "Harmonize",body: "Version \(appVersion)\nMade with ❤️ by BomberFish")
+                    }, label: {
+                        Image(systemName: "info")
+                    })
             }
         }
-        .pickerStyle(MenuPickerStyle())
-        .onChange(of: device, perform: setInputDevice)
     }
-
-    func getDevices() -> [Device] {
-        AudioEngine.inputDevices.compactMap { $0 }
+    
+    struct ContentView_Previews: PreviewProvider {
+        static var previews: some View {
+            ContentView()
+        }
     }
-
-    func setInputDevice(to device: Device) {
-        do {
-            try AudioEngine.setInputDevice(device)
-        } catch let err {
-            print(err)
+    
+    struct InputDevicePicker: View {
+        @State var device: Device
+        
+        var body: some View {
+            Picker("Input: \(device.deviceID)", selection: $device) {
+                ForEach(getDevices(), id: \.self) {
+                    Text($0.deviceID)
+                }
+            }
+            .pickerStyle(MenuPickerStyle())
+            .onChange(of: device, perform: setInputDevice)
+        }
+        
+        func getDevices() -> [Device] {
+            AudioEngine.inputDevices.compactMap { $0 }
+        }
+        
+        func setInputDevice(to device: Device) {
+            do {
+                try AudioEngine.setInputDevice(device)
+            } catch let err {
+                print(err)
+            }
         }
     }
 }
