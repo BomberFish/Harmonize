@@ -15,7 +15,6 @@
 		D6957DE829A570CC007696E0 /* HarmonizeUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6957DE729A570CC007696E0 /* HarmonizeUITests.swift */; };
 		D6957DEA29A570CC007696E0 /* HarmonizeUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6957DE929A570CC007696E0 /* HarmonizeUITestsLaunchTests.swift */; };
 		D6957DFA29A59AEE007696E0 /* AudioKit in Frameworks */ = {isa = PBXBuildFile; productRef = D6957DF929A59AEE007696E0 /* AudioKit */; };
-		D6957DFC29A59D07007696E0 /* TuningFunctions.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6957DFB29A59D07007696E0 /* TuningFunctions.swift */; };
 		D6957DFF29A5ADD5007696E0 /* AudioKitEX in Frameworks */ = {isa = PBXBuildFile; productRef = D6957DFE29A5ADD5007696E0 /* AudioKitEX */; };
 		D6957E0229A5AE08007696E0 /* AudioKitUI in Frameworks */ = {isa = PBXBuildFile; productRef = D6957E0129A5AE08007696E0 /* AudioKitUI */; };
 		D6957E0529A5AE50007696E0 /* SoundpipeAudioKit in Frameworks */ = {isa = PBXBuildFile; productRef = D6957E0429A5AE50007696E0 /* SoundpipeAudioKit */; };
@@ -50,7 +49,6 @@
 		D6957DE329A570CC007696E0 /* HarmonizeUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = HarmonizeUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		D6957DE729A570CC007696E0 /* HarmonizeUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HarmonizeUITests.swift; sourceTree = "<group>"; };
 		D6957DE929A570CC007696E0 /* HarmonizeUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HarmonizeUITestsLaunchTests.swift; sourceTree = "<group>"; };
-		D6957DFB29A59D07007696E0 /* TuningFunctions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TuningFunctions.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -106,7 +104,6 @@
 			isa = PBXGroup;
 			children = (
 				D6957DCB29A570C7007696E0 /* HarmonizeApp.swift */,
-				D6957DFB29A59D07007696E0 /* TuningFunctions.swift */,
 				D6957DCD29A570C7007696E0 /* ContentView.swift */,
 				D6957DCF29A570CA007696E0 /* Assets.xcassets */,
 				D6957DD129A570CA007696E0 /* Harmonize.entitlements */,
@@ -283,7 +280,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				D6957DCE29A570C7007696E0 /* ContentView.swift in Sources */,
-				D6957DFC29A59D07007696E0 /* TuningFunctions.swift in Sources */,
 				D6957DCC29A570C7007696E0 /* HarmonizeApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
