@@ -17,6 +17,24 @@
         "revision" : "22183bcf7e8c6baf15e59c1126a4c541e044cec5",
         "version" : "5.5.2"
       }
+    },
+    {
+      "identity" : "audiokitui",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/AudioKit/AudioKitUI.git",
+      "state" : {
+        "revision" : "fd92646e5926da45e7817ee01b4d2931179dce50",
+        "version" : "0.3.4"
+      }
+    },
+    {
+      "identity" : "controls",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/AudioKit/Controls.git",
+      "state" : {
+        "revision" : "5e1da73c34cfe60d5bdbd580dc395bd2da925191",
+        "version" : "1.1.1"
+      }
     }
   ],
   "version" : 2

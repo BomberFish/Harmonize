@@ -17,6 +17,7 @@
 		D6957DFA29A59AEE007696E0 /* AudioKit in Frameworks */ = {isa = PBXBuildFile; productRef = D6957DF929A59AEE007696E0 /* AudioKit */; };
 		D6957DFC29A59D07007696E0 /* TuningFunctions.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6957DFB29A59D07007696E0 /* TuningFunctions.swift */; };
 		D6957DFF29A5ADD5007696E0 /* AudioKitEX in Frameworks */ = {isa = PBXBuildFile; productRef = D6957DFE29A5ADD5007696E0 /* AudioKitEX */; };
+		D6957E0229A5AE08007696E0 /* AudioKitUI in Frameworks */ = {isa = PBXBuildFile; productRef = D6957E0129A5AE08007696E0 /* AudioKitUI */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -57,6 +58,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				D6957DFA29A59AEE007696E0 /* AudioKit in Frameworks */,
+				D6957E0229A5AE08007696E0 /* AudioKitUI in Frameworks */,
 				D6957DFF29A5ADD5007696E0 /* AudioKitEX in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -155,6 +157,7 @@
 			packageProductDependencies = (
 				D6957DF929A59AEE007696E0 /* AudioKit */,
 				D6957DFE29A5ADD5007696E0 /* AudioKitEX */,
+				D6957E0129A5AE08007696E0 /* AudioKitUI */,
 			);
 			productName = Harmonize;
 			productReference = D6957DC829A570C7007696E0 /* Harmonize.app */;
@@ -231,6 +234,7 @@
 			packageReferences = (
 				D6957DF829A59AEE007696E0 /* XCRemoteSwiftPackageReference "AudioKit" */,
 				D6957DFD29A5ADD5007696E0 /* XCRemoteSwiftPackageReference "AudioKitEX" */,
+				D6957E0029A5AE08007696E0 /* XCRemoteSwiftPackageReference "AudioKitUI" */,
 			);
 			productRefGroup = D6957DC929A570C7007696E0 /* Products */;
 			projectDirPath = "";
@@ -652,6 +656,14 @@
 				minimumVersion = 5.0.0;
 			};
 		};
+		D6957E0029A5AE08007696E0 /* XCRemoteSwiftPackageReference "AudioKitUI" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/AudioKit/AudioKitUI.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 0.3.4;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -664,6 +676,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = D6957DFD29A5ADD5007696E0 /* XCRemoteSwiftPackageReference "AudioKitEX" */;
 			productName = AudioKitEX;
+		};
+		D6957E0129A5AE08007696E0 /* AudioKitUI */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = D6957E0029A5AE08007696E0 /* XCRemoteSwiftPackageReference "AudioKitUI" */;
+			productName = AudioKitUI;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};
