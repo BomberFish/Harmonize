@@ -10,7 +10,7 @@ import AudioKit
 import AudioKitEX
 import AudioKitUI
 import AudioToolbox
-
+import SoundpipeAudioKit
 
 struct TunerData {
     var pitch: Float = 0.0
