@@ -17,6 +17,8 @@ struct TunerData {
     var amplitude: Float = 0.0
     var noteNameWithSharps = "-"
     var noteNameWithFlats = "-"
+    var closeness: Float = 1.0
+    var targetPitch: Float = 0.0
 }
 
 class TunerConductor: ObservableObject, HasAudioEngine {
@@ -34,6 +36,8 @@ class TunerConductor: ObservableObject, HasAudioEngine {
     var tracker: PitchTap!
 
     let noteFrequencies = [16.35, 17.32, 18.35, 19.45, 20.6, 21.83, 23.12, 24.5, 25.96, 27.5, 29.14, 30.87]
+    // FIXME: Oh god.
+    let noteFrequenciesFloat: [Float] = [16.35, 17.32, 18.35, 19.45, 20.6, 21.83, 23.12, 24.5, 25.96, 27.5, 29.14, 30.87]
     let noteNamesWithSharps = ["C", "C♯", "D", "D♯", "E", "F", "F♯", "G", "G♯", "A", "A♯", "B"]
     let noteNamesWithFlats = ["C", "D♭", "D", "E♭", "E", "F", "G♭", "G", "A♭", "A", "B♭", "B"]
     
@@ -93,6 +97,10 @@ class TunerConductor: ObservableObject, HasAudioEngine {
         let octave = Int(log2f(pitch / frequency))
         data.noteNameWithSharps = "\(noteNamesWithSharps[index])\(octave)"
         data.noteNameWithFlats = "\(noteNamesWithFlats[index])\(octave)"
+        var pitchFloat = Float(pitch)
+        var currentTargetPitch: Float = Float(noteFrequenciesFloat.min(by: { abs($0 - pitchFloat) < abs($1 - pitchFloat) })!) * Float(octave + 1)
+        data.targetPitch = currentTargetPitch
+        data.closeness = Float(pitch) / currentTargetPitch
     }
 }
 
@@ -111,6 +119,23 @@ struct ContentView: View {
                 } header: {
                     Label("Frequency", systemImage: "waveform")
                 }
+                Section {
+                    InputDevicePicker(device: conductor.initialDevice)
+                } header: {
+                    Label("Options", systemImage: "wrench.and.screwdriver")
+                }
+                Section {
+                    Text("targetPitch: \(conductor.data.targetPitch)")
+                    Text("closeness: \(conductor.data.closeness)")
+                } header: {
+                    Label("Debug - Here be Dragons!", systemImage: "ladybug")
+                    
+                }
+                Section {
+                    NodeOutputView(conductor.tappableNodeA).clipped()
+                } header: {
+                    Label("Graph", systemImage: "waveform.path")
+                }
             }
             .onAppear {
                 conductor.start()
@@ -126,5 +151,31 @@ struct ContentView: View {
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
         ContentView()
+    }
+}
+
+struct InputDevicePicker: View {
+    @State var device: Device
+
+    var body: some View {
+        Picker("Input: \(device.deviceID)", selection: $device) {
+            ForEach(getDevices(), id: \.self) {
+                Text($0.deviceID)
+            }
+        }
+        .pickerStyle(MenuPickerStyle())
+        .onChange(of: device, perform: setInputDevice)
+    }
+
+    func getDevices() -> [Device] {
+        AudioEngine.inputDevices.compactMap { $0 }
+    }
+
+    func setInputDevice(to device: Device) {
+        do {
+            try AudioEngine.setInputDevice(device)
+        } catch let err {
+            print(err)
+        }
     }
 }
