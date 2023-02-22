@@ -18,6 +18,8 @@
 		D6957DFF29A5ADD5007696E0 /* AudioKitEX in Frameworks */ = {isa = PBXBuildFile; productRef = D6957DFE29A5ADD5007696E0 /* AudioKitEX */; };
 		D6957E0229A5AE08007696E0 /* AudioKitUI in Frameworks */ = {isa = PBXBuildFile; productRef = D6957E0129A5AE08007696E0 /* AudioKitUI */; };
 		D6957E0529A5AE50007696E0 /* SoundpipeAudioKit in Frameworks */ = {isa = PBXBuildFile; productRef = D6957E0429A5AE50007696E0 /* SoundpipeAudioKit */; };
+		D6957E0929A5B16D007696E0 /* Haptic++.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6957E0729A5B16D007696E0 /* Haptic++.swift */; };
+		D6957E0A29A5B16D007696E0 /* Alert++.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6957E0829A5B16D007696E0 /* Alert++.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -49,6 +51,8 @@
 		D6957DE329A570CC007696E0 /* HarmonizeUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = HarmonizeUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		D6957DE729A570CC007696E0 /* HarmonizeUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HarmonizeUITests.swift; sourceTree = "<group>"; };
 		D6957DE929A570CC007696E0 /* HarmonizeUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HarmonizeUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		D6957E0729A5B16D007696E0 /* Haptic++.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Haptic++.swift"; sourceTree = "<group>"; };
+		D6957E0829A5B16D007696E0 /* Alert++.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Alert++.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -107,6 +111,7 @@
 				D6957DCD29A570C7007696E0 /* ContentView.swift */,
 				D6957DCF29A570CA007696E0 /* Assets.xcassets */,
 				D6957DD129A570CA007696E0 /* Harmonize.entitlements */,
+				D6957E0629A5B13E007696E0 /* Helpers */,
 				D6957DD229A570CA007696E0 /* Preview Content */,
 			);
 			path = Harmonize;
@@ -135,6 +140,15 @@
 				D6957DE929A570CC007696E0 /* HarmonizeUITestsLaunchTests.swift */,
 			);
 			path = HarmonizeUITests;
+			sourceTree = "<group>";
+		};
+		D6957E0629A5B13E007696E0 /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				D6957E0829A5B16D007696E0 /* Alert++.swift */,
+				D6957E0729A5B16D007696E0 /* Haptic++.swift */,
+			);
+			path = Helpers;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -279,7 +293,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D6957E0929A5B16D007696E0 /* Haptic++.swift in Sources */,
 				D6957DCE29A570C7007696E0 /* ContentView.swift in Sources */,
+				D6957E0A29A5B16D007696E0 /* Alert++.swift in Sources */,
 				D6957DCC29A570C7007696E0 /* HarmonizeApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

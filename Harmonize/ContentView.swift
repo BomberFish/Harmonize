@@ -36,11 +36,17 @@ class TunerConductor: ObservableObject, HasAudioEngine {
     let noteFrequencies = [16.35, 17.32, 18.35, 19.45, 20.6, 21.83, 23.12, 24.5, 25.96, 27.5, 29.14, 30.87]
     let noteNamesWithSharps = ["C", "C♯", "D", "D♯", "E", "F", "F♯", "G", "G♯", "A", "A♯", "B"]
     let noteNamesWithFlats = ["C", "D♭", "D", "E♭", "E", "F", "G♭", "G", "A♭", "A", "B♭", "B"]
-
+    
     init() {
-        guard let input = engine.input else { fatalError() }
+        guard let input = engine.input else {
+            UIApplication.shared.alert(body: "Could not find Input!")
+            preconditionFailure("Could not find Input!")
+        }
 
-        guard let device = engine.inputDevice else { fatalError() }
+        guard let device = engine.inputDevice else {
+            UIApplication.shared.alert(body: "Could not find Input Device!")
+            preconditionFailure("Could not find Input Device!")
+        }
 
         initialDevice = device
 
@@ -91,14 +97,29 @@ class TunerConductor: ObservableObject, HasAudioEngine {
 }
 
 struct ContentView: View {
+    @StateObject var conductor = TunerConductor()
     var body: some View {
-        VStack {
-            Image(systemName: "globe")
-                .imageScale(.large)
-                .foregroundColor(.accentColor)
-            Text("Hello, world!")
+        NavigationView {
+            List {
+                Section {
+                    Text("\(conductor.data.noteNameWithSharps) / \(conductor.data.noteNameWithFlats)")
+                } header: {
+                    Label("Note", systemImage: "music.quarternote.3")
+                }
+                Section {
+                    Text("\(conductor.data.pitch, specifier: "%0.1f")")
+                } header: {
+                    Label("Frequency", systemImage: "waveform")
+                }
+            }
+            .onAppear {
+                conductor.start()
+            }
+            .onDisappear {
+                conductor.stop()
+            }
+            .navigationTitle("Harmonize")
         }
-        .padding()
     }
 }
 
