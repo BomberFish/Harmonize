@@ -172,7 +172,9 @@ struct ContentView: View {
                 }
                 Section {
                     Text("targetPitch: \(conductor.data.targetPitch)")
+                        .textSelection(.enabled)
                     Text("closeness: \(conductor.data.closeness)")
+                        .textSelection(.enabled)
                 } header: {
                     Label("Debug - Here be Dragons!", systemImage: "ladybug")
                     
