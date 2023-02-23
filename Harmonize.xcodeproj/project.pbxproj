@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		D67C0F8D29A6F6D0005267D9 /* TuningFunctions.swift in Sources */ = {isa = PBXBuildFile; fileRef = D67C0F8C29A6F6D0005267D9 /* TuningFunctions.swift */; };
 		D6957DCC29A570C7007696E0 /* HarmonizeApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6957DCB29A570C7007696E0 /* HarmonizeApp.swift */; };
 		D6957DCE29A570C7007696E0 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6957DCD29A570C7007696E0 /* ContentView.swift */; };
 		D6957DD029A570CA007696E0 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D6957DCF29A570CA007696E0 /* Assets.xcassets */; };
@@ -40,6 +41,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		D67C0F8C29A6F6D0005267D9 /* TuningFunctions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TuningFunctions.swift; sourceTree = "<group>"; };
 		D6957DC829A570C7007696E0 /* Harmonize.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Harmonize.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D6957DCB29A570C7007696E0 /* HarmonizeApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HarmonizeApp.swift; sourceTree = "<group>"; };
 		D6957DCD29A570C7007696E0 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -108,6 +110,7 @@
 			children = (
 				D6957DCB29A570C7007696E0 /* HarmonizeApp.swift */,
 				D6957DCD29A570C7007696E0 /* ContentView.swift */,
+				D67C0F8C29A6F6D0005267D9 /* TuningFunctions.swift */,
 				D6957DCF29A570CA007696E0 /* Assets.xcassets */,
 				D6957E0629A5B13E007696E0 /* Helpers */,
 				D6957DD229A570CA007696E0 /* Preview Content */,
@@ -294,6 +297,7 @@
 				D6957E0929A5B16D007696E0 /* Haptic++.swift in Sources */,
 				D6957DCE29A570C7007696E0 /* ContentView.swift in Sources */,
 				D6957E0A29A5B16D007696E0 /* Alert++.swift in Sources */,
+				D67C0F8D29A6F6D0005267D9 /* TuningFunctions.swift in Sources */,
 				D6957DCC29A570C7007696E0 /* HarmonizeApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
