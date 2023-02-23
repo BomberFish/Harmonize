@@ -1,3 +1,3 @@
-![Harmonize Icon](./Harmonize/Assets.xcassets/AppIcon.appiconset/128.png)
+![Harmonize Icon](./logo.png)
 # Harmonize
 Tune your instrument with your iPhone. WIP.
