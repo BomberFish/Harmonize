@@ -25,12 +25,12 @@ struct TunerData {
 class PreviewTunerConductor: ObservableObject {
     @Published var data = TunerData()
     init() {
-        data.noteNameWithSharps = "A4"
-        data.noteNameWithFlats = "A4"
-        data.pitch = 440.0
+        data.noteNameWithSharps = "E4"
+        data.noteNameWithFlats = "E4"
+        data.pitch = 329.63
         data.amplitude = 0.9
         data.closeness = 1.0
-        data.targetPitch = 440.0
+        data.targetPitch = 329.63
     }
 }
 
@@ -49,10 +49,10 @@ class TunerConductor: ObservableObject, HasAudioEngine {
     var tracker: PitchTap!
 
     let noteFrequencies = [16.35, 17.32, 18.35, 19.45, 20.6, 21.83, 23.12, 24.5, 25.96, 27.5, 29.14, 30.87]
-    // FIXME: Oh god.
-    let noteFrequenciesFloat: [Float] = [16.35, 17.32, 18.35, 19.45, 20.6, 21.83, 23.12, 24.5, 25.96, 27.5, 29.14, 30.87]
     let noteNamesWithSharps = ["C", "C♯", "D", "D♯", "E", "F", "F♯", "G", "G♯", "A", "A♯", "B"]
     let noteNamesWithFlats = ["C", "D♭", "D", "E♭", "E", "F", "G♭", "G", "A♭", "A", "B♭", "B"]
+    // FIXME: Oh god.
+    let noteFrequenciesFloat: [Float] = [16.35, 17.32, 18.35, 19.45, 20.6, 21.83, 23.12, 24.5, 25.96, 27.5, 29.14, 30.87]
     
     init() {
         guard let input = engine.input else {
@@ -115,4 +115,21 @@ class TunerConductor: ObservableObject, HasAudioEngine {
         data.targetPitch = currentTargetPitch
         data.closeness = Float(pitch) / currentTargetPitch
     }
+}
+
+func getGuitarString(noteName: String) -> Int {
+    if noteName == "E2" {
+        return 6
+    } else if noteName == "A2" {
+        return 5
+    } else if noteName == "D3" {
+        return 4
+    } else if noteName == "G3" {
+        return 3
+    } else if noteName == "B3" {
+        return 2
+    } else if noteName == "E4" {
+        return 1
+    }
+    return 0
 }

@@ -47,6 +47,10 @@ struct ContentView: View {
                 }
                 
                 Section {
+                    Text("Guitar String: \(getGuitarString(noteName: conductor.data.noteNameWithSharps))")
+                }
+                
+                Section {
                     #if targetEnvironment(simulator)
                     Text("InputDevicePicker not shown - in preview mode")
                     #else
