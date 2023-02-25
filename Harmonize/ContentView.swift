@@ -99,7 +99,7 @@ struct ContentView: View {
                     action: {
                         UIApplication.shared.alert(title: "Harmonize",body: "Version \(appVersion)\nMade with ❤️ by BomberFish")
                     }, label: {
-                        Image(systemName: "info")
+                        Image(systemName: "info.circle")
                     })
             }
         }
